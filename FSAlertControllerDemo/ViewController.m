@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "FSAlertController.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    FSAlertController *alertController = [FSAlertController alertControllerWithTitle:@"title" message:@"message" preferredStyle:FSAlertControllerStyleAlert];
+    [alertController showInViewController:self animated:YES completion:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    FSAlertController *alertController = [FSAlertController alertControllerWithTitle:@"title" message:@"message" preferredStyle:FSAlertControllerStyleAlert];
+    [alertController addAction:[FSAlertAction actionWithTitle:@"red" style:FSAlertActionStyleDefault handler:^(FSAlertAction *action) {
+        [self.view setBackgroundColor:[UIColor redColor]];
+    }]];
+    [alertController showInViewController:self animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

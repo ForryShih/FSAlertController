@@ -14,6 +14,7 @@
 		2BCAA2C51A654C1E004D1149 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAA2C41A654C1E004D1149 /* Images.xcassets */; };
 		2BCAA2C81A654C1E004D1149 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAA2C61A654C1E004D1149 /* LaunchScreen.xib */; };
 		2BCAA2D41A654C1E004D1149 /* FSAlertControllerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAA2D31A654C1E004D1149 /* FSAlertControllerDemoTests.m */; };
+		2BCAA2E01A654C82004D1149 /* FSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAA2DF1A654C82004D1149 /* FSAlertController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		2BCAA2CD1A654C1E004D1149 /* FSAlertControllerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FSAlertControllerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BCAA2D21A654C1E004D1149 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BCAA2D31A654C1E004D1149 /* FSAlertControllerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAlertControllerDemoTests.m; sourceTree = "<group>"; };
+		2BCAA2DE1A654C82004D1149 /* FSAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAlertController.h; sourceTree = "<group>"; };
+		2BCAA2DF1A654C82004D1149 /* FSAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAlertController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,7 @@
 				2BCAA2BC1A654C1E004D1149 /* AppDelegate.m */,
 				2BCAA2BE1A654C1E004D1149 /* ViewController.h */,
 				2BCAA2BF1A654C1E004D1149 /* ViewController.m */,
+				2BCAA2DD1A654C55004D1149 /* FSAlertController */,
 				2BCAA2C11A654C1E004D1149 /* Main.storyboard */,
 				2BCAA2C41A654C1E004D1149 /* Images.xcassets */,
 				2BCAA2C61A654C1E004D1149 /* LaunchScreen.xib */,
@@ -117,6 +121,15 @@
 				2BCAA2D21A654C1E004D1149 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2BCAA2DD1A654C55004D1149 /* FSAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				2BCAA2DE1A654C82004D1149 /* FSAlertController.h */,
+				2BCAA2DF1A654C82004D1149 /* FSAlertController.m */,
+			);
+			path = FSAlertController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +235,7 @@
 				2BCAA2C01A654C1E004D1149 /* ViewController.m in Sources */,
 				2BCAA2BD1A654C1E004D1149 /* AppDelegate.m in Sources */,
 				2BCAA2BA1A654C1E004D1149 /* main.m in Sources */,
+				2BCAA2E01A654C82004D1149 /* FSAlertController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
