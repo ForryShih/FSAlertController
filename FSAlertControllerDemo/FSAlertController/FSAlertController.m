@@ -86,12 +86,90 @@ typedef void(^FSAlertActionBlock)(FSAlertAction *action);
         for (FSAlertAction *fsAlertAction in _actions)
         {
             UIAlertAction *uiAlertAction = [UIAlertAction actionWithTitle:fsAlertAction.title style:(UIAlertActionStyle)fsAlertAction.style handler:^(UIAlertAction *action){
-                fsAlertAction.handler(nil);
+                if (fsAlertAction.handler)
+                {
+                    fsAlertAction.handler(nil);
+                }
             }];
             [alertController addAction:uiAlertAction];
         }
+        
+        UIPopoverPresentationController *ppc = alertController.popoverPresentationController;
+        if (ppc)
+        {
+            ppc.delegate = self;
+            ppc.sourceView = viewController.view;
+            ppc.sourceRect = CGRectMake(ppc.sourceView.bounds.size.width * 0.5f, ppc.sourceView.bounds.size.height * 0.5f, 0, 0);
+            // Do not display arrow.
+            ppc.permittedArrowDirections = 0;
+        }
+        
         [viewController presentViewController:alertController animated:animated completion:completion];
     }
+    else
+    {
+        if (_preferredStyle == FSAlertControllerStyleAlert)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:_title message:_message delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+            for (FSAlertAction *alertAction in _actions)
+            {
+                [alertView addButtonWithTitle:alertAction.title];
+                
+                if (alertAction.style == FSAlertActionStyleCancel)
+                {
+                    alertView.cancelButtonIndex = [_actions indexOfObject:alertAction];
+                }
+            }
+            
+            [alertView show];
+        }
+        else if (_preferredStyle == FSAlertControllerStyleActionSheet)
+        {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:_title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+            for (FSAlertAction *alertAction in _actions)
+            {
+                [actionSheet addButtonWithTitle:alertAction.title];
+                
+                if (alertAction.style == FSAlertActionStyleCancel)
+                {
+                    actionSheet.cancelButtonIndex = [_actions indexOfObject:alertAction];
+                }
+                
+                if (alertAction.style == FSAlertActionStyleDestructive)
+                {
+                    actionSheet.destructiveButtonIndex = [_actions indexOfObject:alertAction];
+                }
+            }
+            
+            [actionSheet showInView:viewController.view];
+        }
+    }
+}
+
+- (void)clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex >= 0 && buttonIndex < [_actions count])
+    {
+        FSAlertAction *alertAction = [_actions objectAtIndex:buttonIndex];
+        if (alertAction.handler)
+        {
+            alertAction.handler(nil);
+        }
+    }
+}
+
+#pragma mark - UIAlertViewDelegate Methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self clickedButtonAtIndex:buttonIndex];
+}
+
+#pragma mark - UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self clickedButtonAtIndex:buttonIndex];
 }
 
 @end

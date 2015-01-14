@@ -11,6 +11,8 @@
 
 @interface ViewController ()
 
+//@property (nonatomic, strong) FSAlertController *alertController;
+
 @end
 
 @implementation ViewController
@@ -18,17 +20,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    FSAlertController *alertController = [FSAlertController alertControllerWithTitle:@"title" message:@"message" preferredStyle:FSAlertControllerStyleAlert];
-    [alertController showInViewController:self animated:YES completion:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (IBAction)showAlertController:(UIButton *)sender
 {
-    FSAlertController *alertController = [FSAlertController alertControllerWithTitle:@"title" message:@"message" preferredStyle:FSAlertControllerStyleAlert];
-    [alertController addAction:[FSAlertAction actionWithTitle:@"red" style:FSAlertActionStyleDefault handler:^(FSAlertAction *action) {
+    FSAlertControllerStyle style;
+    if ([sender.titleLabel.text isEqualToString:@"ShowAlertButton"])
+    {
+        style = FSAlertControllerStyleAlert;
+    }
+    else
+    {
+        style = FSAlertControllerStyleActionSheet;
+    }
+    
+    FSAlertController *_alertController = [FSAlertController alertControllerWithTitle:@"title" message:@"message" preferredStyle:style];
+    [_alertController addAction:[FSAlertAction actionWithTitle:@"red" style:FSAlertActionStyleDestructive handler:^(FSAlertAction *action) {
         [self.view setBackgroundColor:[UIColor redColor]];
     }]];
-    [alertController showInViewController:self animated:YES completion:nil];
+    [_alertController addAction:[FSAlertAction actionWithTitle:@"black" style:FSAlertActionStyleDefault handler:^(FSAlertAction *action) {
+        [self.view setBackgroundColor:[UIColor blackColor]];
+    }]];
+    [_alertController addAction:[FSAlertAction actionWithTitle:@"Cancel" style:FSAlertActionStyleCancel handler:nil]];
+    [_alertController showInViewController:self animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

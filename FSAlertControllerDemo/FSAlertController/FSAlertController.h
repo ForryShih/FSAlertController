@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, FSAlertControllerStyle) {
 @end
 
 
-@interface FSAlertController : NSObject
+@interface FSAlertController : NSObject <UIAlertViewDelegate, UIActionSheetDelegate, UIPopoverPresentationControllerDelegate>
 
 + (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message preferredStyle:(FSAlertControllerStyle)preferredStyle;
 
