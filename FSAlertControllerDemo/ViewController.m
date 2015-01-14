@@ -11,7 +11,7 @@
 
 @interface ViewController ()
 
-//@property (nonatomic, strong) FSAlertController *alertController;
+@property (nonatomic, strong) FSAlertController *alertController;
 
 @end
 
@@ -34,7 +34,8 @@
         style = FSAlertControllerStyleActionSheet;
     }
     
-    FSAlertController *_alertController = [FSAlertController alertControllerWithTitle:@"title" message:@"message" preferredStyle:style];
+    _alertController = [FSAlertController alertControllerWithTitle:@"title" message:@"message" preferredStyle:style];
+    
     [_alertController addAction:[FSAlertAction actionWithTitle:@"red" style:FSAlertActionStyleDestructive handler:^(FSAlertAction *action) {
         [self.view setBackgroundColor:[UIColor redColor]];
     }]];
@@ -42,6 +43,7 @@
         [self.view setBackgroundColor:[UIColor blackColor]];
     }]];
     [_alertController addAction:[FSAlertAction actionWithTitle:@"Cancel" style:FSAlertActionStyleCancel handler:nil]];
+    
     [_alertController showInViewController:self animated:YES completion:nil];
 }
 

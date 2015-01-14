@@ -1,6 +1,6 @@
 //
 //  FSAlertController.m
-//  FSAlertControllerDemo
+//  FSAlertController
 //
 //  Created by ForryShih on 1/13/15.
 //  Copyright (c) 2015 Rampage Works. All rights reserved.
@@ -99,7 +99,7 @@ typedef void(^FSAlertActionBlock)(FSAlertAction *action);
         {
             ppc.delegate = self;
             ppc.sourceView = viewController.view;
-            ppc.sourceRect = CGRectMake(ppc.sourceView.bounds.size.width * 0.5f, ppc.sourceView.bounds.size.height * 0.5f, 0, 0);
+            ppc.sourceRect = CGRectMake(ppc.sourceView.bounds.size.width * 0.5f, ppc.sourceView.bounds.size.height * 0.5f, 0.0f, 0.0f);
             // Do not display arrow.
             ppc.permittedArrowDirections = 0;
         }
@@ -170,6 +170,13 @@ typedef void(^FSAlertActionBlock)(FSAlertAction *action);
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [self clickedButtonAtIndex:buttonIndex];
+}
+
+#pragma mark - UIPopoverPresentationControllerDelegate Methods;
+
+- (void)popoverPresentationController:(UIPopoverPresentationController *)popoverPresentationController willRepositionPopoverToRect:(inout CGRect *)rect inView:(inout UIView *__autoreleasing *)view
+{
+    *rect = CGRectMake((*view).bounds.size.width * 0.5f, (*view).bounds.size.height * 0.5f, 0.0f, 0.0f);
 }
 
 @end
