@@ -2,8 +2,9 @@
 Show UIAlertView and UIActionSheet in iOS 7, but show UIAlertController in iOS 8 or later.
 
 
-Usage:
+##Usage:
 
+```Objective-C
 //FSAlertController object must be a global variable. Otherwise, app will crash after alertController was released.
 @property (nonatomic, strong) FSAlertController *alertController;
 
@@ -31,3 +32,4 @@ Usage:
     
     [_alertController showInViewController:self animated:YES completion:nil];
 }
+```
